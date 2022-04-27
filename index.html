@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+
+            function sleep(ms)
+            {
+            return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            document.addEventListener('DOMContentLoaded',async function()
+            {
+                let correct = document.querySelector('.correct');
+                correct.addEventListener('click', async function()
+                {
+                    correct.style.backgroundColor = 'green';
+                    document.querySelector('#feedback1').innerHTML = 'Correct!';
+                    await sleep (2500)
+                    correct.style.backgroundColor = '#1E90FF';
+                    document.querySelector('#feedback1').innerHTML = ' '
+
+                });
+
+                let incorrects = document.querySelectorAll('.incorrect');
+                for (let i = 0; i < incorrects.length; i++)
+                {
+                    incorrects[i].addEventListener('click', async function()
+                    {
+                        incorrects[i].style.backgroundColor = 'red';
+                        document.querySelector('#feedback1').innerHTML = 'Incorrect.';
+                        await sleep(1500);
+                        incorrects[i].style.backgroundColor = '#1E90FF';
+                        document.querySelector('#feedback1').innerHTML = ' ';
+                    });
+                }
+
+            document.querySelector('#check').addEventListener('click', async function()
+            {
+                let input = document.querySelector('input');
+                if (input.value === 'Aviation Gin')
+                {
+                    input.style.backgroundColor = 'green';
+                    check.style.backgroundColor = 'green';
+                    document.querySelector('#feedback2').innerHTML = 'Correct!';
+                    await sleep(2500)
+                    input.style.backgroundColor = '#f5f5f5';
+                    check.style.backgroundColor = '#1E90FF';
+                    document.querySelector('#feedback2').innerHTML = '';
+                    input.value = '';
+                }
+                else
+                {
+                    input.style.backgroundColor = 'red';
+                    check.style.backgroundColor = 'red';
+                    document.querySelector('#feedback2').innerHTML = 'Incorrect.';
+                    await sleep(1500)
+                    input.style.backgroundColor = '#f5f5f5';
+                    check.style.backgroundColor = '#1E90FF';
+                    document.querySelector('#feedback2').innerHTML = '';
+                    input.value = '';
+                }
+            });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>Who is Ryan Reynolds' greatest rival?</h3>
+                <button type="button" class="incorrect">Tom Holland</button>
+                <button type="button" class="incorrect">Josh Brolin</button>
+                <button type="button" class="correct">Hugh Jackman</button>
+                <button type="button" class="incorrect">Blake Lively</button>
+                <button type="button" class="incorrect">Jake Gyllenhaal</button>
+                <button type="button" class="incorrect">Dwayne Johnson</button>
+                <p id="feedback1"></p>
+            </div>
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>What is the company Ryan Reynolds sold for 610 million dollars?</h3>
+                <input type="text"></input>
+                <button type="button" id="check">Check Answer</button>
+                <p id="feedback2"></p>
+            </div>
+        </div>
+    </body>
+</html>
